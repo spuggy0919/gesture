@@ -11,7 +11,7 @@ import SwiftUI
 struct GestureDetect: View {
     
  //  @Published  var igesture:String = "Nil"
-    // 1.
+    // 1. Publish for outside use
     @GestureState  var translation = CGFloat(1.0)
     @State private var degrees: Double = 0
     @State private var scale: CGFloat = 1.0
@@ -21,17 +21,17 @@ struct GestureDetect: View {
     @State var position = CGPoint.zero
 
     var body: some View {
-        // 2.
+        // 2. define your gesture , the sequence should be
+        //     drag tap multitouch, otherwise the drag will not update and no onChange
         let magnificationGesture = MagnificationGesture().onChanged { (value) in
             self.scale = value.magnitude
         }
-        // 3.
         let rotationGesture = RotationGesture().onChanged { (value) in
             self.degrees = value.degrees
         }
        let magnificationAndRotateGesture = magnificationGesture.simultaneously(with: rotationGesture)
       //  let magnificationAndRotateGestureAnddraggesture = draggesture.simultaneously(with: magnificationAndRotateGesture)
- 
+        // zoom in out
         let tapgesture = TapGesture()
                             .onEnded { _ in
                                 if (self.dragmoves == 2){
@@ -47,7 +47,7 @@ struct GestureDetect: View {
                             print("tap  position \(self.position)")
                         }
         let draggesture = DragGesture(minimumDistance: 0, coordinateSpace: .global)
-      /*  .updating(self.$translation){
+      /*  .updating(self.$translation){  // To do still not understand, study later
             value, state, _  in
             self.offset.x  = value.location.x - value.startLocation.x
             self.offset.y  = value.location.y - value.startLocation.y
@@ -69,12 +69,12 @@ struct GestureDetect: View {
                 print("drag position \(value.location)")
         } .sequenced(before: tapgesture)       // 4.
      //   let dragtap = draggesture.simultaneously(with: tapgesture)
-
+    
        Image("stone")
             .scaleEffect(scale)
-            .gesture(draggesture)
+            .gesture(draggesture) // move to before magnify
             .gesture(magnificationAndRotateGesture)
-           .rotationEffect(Angle(degrees: degrees))
+            .rotationEffect(Angle(degrees: degrees))
             .offset(x:offset.x,y:offset.y)
             .animation(.easeInOut)
     }
