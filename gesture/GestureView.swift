@@ -25,10 +25,24 @@ struct GestureDetect: View {
         // 2. define your gesture , the sequence should be
         //     drag tap multitouch, otherwise the drag will not update and no onChange
         let magnificationGesture = MagnificationGesture().onChanged { (value) in
-            self.magnify = value.magnitude // modify from scale to magnify to sync with tap
+             
+            self.magnify *= value.magnitude // modify from scale to magnify to sync with tap
+            if (self.magnify<0.5){
+                self.magnify=0.5
+            }else if (self.magnify>2.0){
+                self.magnify=2.0
+            }
+            print("magnify:\(value.magnitude)")
         }
         let rotationGesture = RotationGesture().onChanged { (value) in
-            self.degrees = value.degrees
+        //    self.degrees = value.degrees
+            /* TO DO need to bounding check */
+           if (self.degrees < (-30)){
+                self.degrees = -30
+            }else if (self.degrees > 30){
+                self.degrees = 30
+            }
+            print("degree:\(value.degrees)")
         }
        let magnificationAndRotateGesture = magnificationGesture.simultaneously(with: rotationGesture)
       //  let magnificationAndRotateGestureAnddraggesture = draggesture.simultaneously(with: magnificationAndRotateGesture)
@@ -37,25 +51,26 @@ struct GestureDetect: View {
                             .onEnded { _ in
                                 if (self.dragmoves == 2){
                                     self.dragmoves = 1
+                                //    self.scale = 1.0
                                     return
                                 }
+
                                 self.scale  += self.steping
-                            if  abs(self.scale - 0.3) < 0.0001 {
+                            if  abs(self.scale - 0.5) < 0.0001 {
                                 self.steping = 0.1
-                            }else if abs(self.scale - 1.7) < 0.0001 {
+                            }else if abs(self.scale - 1.5) < 0.0001 {
                                 self.steping = -0.1
                             }
                             print("tap  position \(self.position)")
                         }
         let draggesture = DragGesture(minimumDistance: 0, coordinateSpace: .global)
-      /*  .updating(self.$translation){  // To do still not understand, study later
+   /*    .updating(self.$translation){  // To do still not understand, study later
             value, state, _  in
-            self.offset.x  = value.location.x - value.startLocation.x
-            self.offset.y  = value.location.y - value.startLocation.y
+            self.offset.x  += value.location.x - value.startLocation.x
+            self.offset.y  += value.location.y - value.startLocation.y
             self.position = value.location
-            print("drag startpos1\(value.startLocation)")
-            print("drag position1\(value.location)")
         }*/.onChanged{ value in
+            /* TO DO need to bounding check */
             self.offset.x  = value.location.x - value.startLocation.x
             self.offset.y  = value.location.y - value.startLocation.y
             self.position = value.location
@@ -70,7 +85,7 @@ struct GestureDetect: View {
                 print("drag position \(value.location)")
         } .sequenced(before: tapgesture)       // 4.
      //   let dragtap = draggesture.simultaneously(with: tapgesture)
-    
+        /* TODO state update unsafe */
        Image("stone")
             .scaleEffect(scale*magnify)
             .gesture(draggesture) // move to before magnify
