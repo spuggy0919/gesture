@@ -2,7 +2,7 @@
 //  GestureView.swift
 //  gesture
 //
-//  Created by Lin Hess on 2021/10/15.
+//  Created by Spuggy0919 on 2021/10/15.
 //
 
 import SwiftUI
