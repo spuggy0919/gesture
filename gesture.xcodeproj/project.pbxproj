@@ -12,6 +12,7 @@
 		F0A4669127198F2800A3C800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0A4669027198F2800A3C800 /* Assets.xcassets */; };
 		F0A4669427198F2800A3C800 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0A4669327198F2800A3C800 /* Preview Assets.xcassets */; };
 		F0A4669D27198F5B00A3C800 /* GestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A4669C27198F5B00A3C800 /* GestureView.swift */; };
+		F0C129C5271AE86500F6B9E4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0C129C4271AE86500F6B9E4 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F0A4669327198F2800A3C800 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0A4669527198F2800A3C800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0A4669C27198F5B00A3C800 /* GestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureView.swift; sourceTree = "<group>"; };
+		F0C129C4271AE86500F6B9E4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		F0A4668027198F2500A3C800 = {
 			isa = PBXGroup;
 			children = (
+				F0C129C4271AE86500F6B9E4 /* README.md */,
 				F0A4668B27198F2500A3C800 /* gesture */,
 				F0A4668A27198F2500A3C800 /* Products */,
 			);
@@ -129,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C129C5271AE86500F6B9E4 /* README.md in Resources */,
 				F0A4669427198F2800A3C800 /* Preview Assets.xcassets in Resources */,
 				F0A4669127198F2800A3C800 /* Assets.xcassets in Resources */,
 			);

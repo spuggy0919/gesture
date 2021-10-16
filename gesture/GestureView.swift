@@ -15,6 +15,7 @@ struct GestureDetect: View {
     @GestureState  var translation = CGFloat(1.0)
     @State private var degrees: Double = 0
     @State private var scale: CGFloat = 1.0
+    @State private var magnify: CGFloat = 1.0
     @State private var steping: CGFloat = -0.1
     @State var offset = CGPoint.zero
     @State var dragmoves:Int = 1
@@ -24,7 +25,7 @@ struct GestureDetect: View {
         // 2. define your gesture , the sequence should be
         //     drag tap multitouch, otherwise the drag will not update and no onChange
         let magnificationGesture = MagnificationGesture().onChanged { (value) in
-            self.scale = value.magnitude
+            self.magnify = value.magnitude // modify from scale to magnify to sync with tap
         }
         let rotationGesture = RotationGesture().onChanged { (value) in
             self.degrees = value.degrees
@@ -71,7 +72,7 @@ struct GestureDetect: View {
      //   let dragtap = draggesture.simultaneously(with: tapgesture)
     
        Image("stone")
-            .scaleEffect(scale)
+            .scaleEffect(scale*magnify)
             .gesture(draggesture) // move to before magnify
             .gesture(magnificationAndRotateGesture)
             .rotationEffect(Angle(degrees: degrees))
