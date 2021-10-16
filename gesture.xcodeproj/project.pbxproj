@@ -54,7 +54,6 @@
 		F0A4668B27198F2500A3C800 /* gesture */ = {
 			isa = PBXGroup;
 			children = (
-				F0A4669F271990CB00A3C800 /* resource */,
 				F0A4668C27198F2500A3C800 /* gestureApp.swift */,
 				F0A4668E27198F2500A3C800 /* ContentView.swift */,
 				F0A4669C27198F5B00A3C800 /* GestureView.swift */,
@@ -71,13 +70,6 @@
 				F0A4669327198F2800A3C800 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F0A4669F271990CB00A3C800 /* resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
